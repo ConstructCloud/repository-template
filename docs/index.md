@@ -1,6 +1,6 @@
-# Welcome to {{ organisation }}
+# Documentation
 
-This is the official documentation for **{{ repository }}**.
+This is the official documentation for the {{ organisation }} **{{ repository }}**.
 
 ## Sections
 
