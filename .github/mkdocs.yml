@@ -1,4 +1,4 @@
-site_name: Mythbound Auth Service
+site_name: {{ organisation }} {{ repository }}
 site_url: https://{{ organisation }}.github.io/{{ repository }}
 repo_url: https://github.com/{{ organisation }}/{{ repository }}
 edit_uri: edit/main/docs/
