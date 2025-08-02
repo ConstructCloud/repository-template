@@ -5,6 +5,6 @@
   "baseBranches": ["main"],
   "extends": [
     "config:recommended",
-    "github>tibia-oce/mythbound-server//.github/renovate/auto-merge.json"
+    "github>{{ organisation }}/{{ repository }}//.github/renovate/auto-merge.json"
   ]
 }

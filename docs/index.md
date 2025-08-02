@@ -1,6 +1,6 @@
-# Welcome to {{ project_name }}
+# Welcome to {{ organisation }}
 
-This is the official documentation for **{{ project_name }}**.
+This is the official documentation for **{{ repository }}**.
 
 ## Sections
 

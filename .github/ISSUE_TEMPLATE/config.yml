@@ -1,8 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-- name: 📚 Documentation
-  url: https://tibia-oce.github.io/
-  about: Check out the project documentation.
-- name: 🤔 Questions
-  url: https://discord.gg/TT2ebFwEyE
-  about: Join our Discord community.
+  - name: Discord Community
+    url: https://discord.gg/963390461215662100
+    about: Join our Discord for questions and discussions.
