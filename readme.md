@@ -1,17 +1,15 @@
 # {{ organisation }} {{ repository }}
 
-[![Docker Image Version](https://img.shields.io/badge/dynamic/json?url=https://ghcr.io/v2/{{ organisation }}/{{ repository }}/tags/list&label=Docker%20Image&query=$.tags[0]&logo=docker)](https://github.com/{{ organisation }}/{{ repository }}/pkgs/container/{{ repository }})
-[![Build Status](https://img.shields.io/github/actions/workflow/status/{{ organisation }}/{{ repository }}/renovate.yml?branch=develop)](https://github.com/{{ organisation }}/{{ repository }}/actions)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/{{ organisation }}/{{ repository }}/docs.yml?branch=develop)](https://github.com/{{ organisation }}/{{ repository }}/actions)
-
-> TODO.
-
 ## Table of Contents
 
 - [About](#about)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
 - [Documentation](#documentation)
+
+## About
+
+> TODO.
 
 ## Requirements
 
@@ -24,7 +22,7 @@ Make sure you have the following installed:
 
 ## Getting Started
 
-Follow the [Setup Instructions](https://{{ organisation }}.github.io/{{ repository }}/setup.md) for installation and environment configuration. For detailed instructions, see [Usage Documentation](https://{{ organisation }}.github.io/{{ repository }}/usage.md).
+Follow the [setup instructions](https://{{ organisation }}.github.io/{{ repository }}/setup) for installation and environment configuration. For detailed instructions, see [usage documentation](https://{{ organisation }}.github.io/{{ repository }}/usage).
 
 Quick start:
 
@@ -37,5 +35,5 @@ make up
 Additional documentation is available in the repository documentation website:
 
 - [Project Overview](https://{{ organisation }}.github.io/{{ repository }}/)
-- [Setup Instructions](https://{{ organisation }}.github.io/{{ repository }}/setup.md)
-- [Usage Guide](https://{{ organisation }}.github.io/{{ repository }}/usage.md)
+- [Setup Instructions](https://{{ organisation }}.github.io/{{ repository }}/setup)
+- [Usage Guide](https://{{ organisation }}.github.io/{{ repository }}/usage)
