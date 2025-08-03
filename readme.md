@@ -26,6 +26,4 @@ make up
 Additional documentation is available on the repository documentation website:
 
 - [Contributing Guide](https://{{ organisation }}.github.io/{{ repository }}/contributing)
-- [Project Overview](https://{{ organisation }}.github.io/{{ repository }}/)
-- [Setup Instructions](https://{{ organisation }}.github.io/{{ repository }}/setup)
 - [Usage Guide](https://{{ organisation }}.github.io/{{ repository }}/usage)

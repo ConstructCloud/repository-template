@@ -10,12 +10,12 @@ DOCKER_COMPOSE_FILE := docker/docker-compose.yml
 PROJECT_NAME ?= $(shell basename $$(pwd))
 ENV_FILE := .env
 
-BOLD   := $(shell tput bold)
-RED    := $(shell tput setaf 1)
-GREEN  := $(shell tput setaf 2)
-YELLOW := $(shell tput setaf 3)
-BLUE   := $(shell tput setaf 4)
-RESET  := $(shell tput sgr0)
+BOLD   := $(shell tput bold 2>/dev/null || echo "")
+RED    := $(shell tput setaf 1 2>/dev/null || echo "")
+GREEN  := $(shell tput setaf 2 2>/dev/null || echo "")
+YELLOW := $(shell tput setaf 3 2>/dev/null || echo "")
+BLUE   := $(shell tput setaf 4 2>/dev/null || echo "")
+RESET  := $(shell tput sgr0 2>/dev/null || echo "")
 
 # ==========================================================
 # PHONY Targets
