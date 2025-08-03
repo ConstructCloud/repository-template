@@ -1,7 +1,7 @@
 site_name: {{ organisation }} {{ repository }}
 site_url: https://{{ organisation }}.github.io/{{ repository }}
 repo_url: https://github.com/{{ organisation }}/{{ repository }}
-edit_uri: edit/main/docs/
+edit_uri: edit/develop/docs/
 
 theme:
   name: material
