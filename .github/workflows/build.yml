@@ -51,12 +51,7 @@ jobs:
         run: cp .github/.releaserc ./
 
       - name: Install Semantic Release
-        run: npm install --no-save semantic-release \
-          @semantic-release/github \
-          @semantic-release/git \
-          @semantic-release/release-notes-generator \
-          @semantic-release/commit-analyzer \
-          conventional-changelog-conventionalcommits
+        run: npm install --no-save semantic-release @semantic-release/github @semantic-release/git @semantic-release/release-notes-generator @semantic-release/commit-analyzer conventional-changelog-conventionalcommits
 
       - name: Run Semantic Release
         env:
