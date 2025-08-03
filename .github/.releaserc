@@ -5,7 +5,8 @@
     },
     {
       "name": "develop",
-      "prerelease": "alpha"
+      "prerelease": "alpha",
+      "channel": "alpha"
     }
   ],
   "tagFormat": "v${version}",
