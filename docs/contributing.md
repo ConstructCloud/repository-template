@@ -8,11 +8,7 @@ We follow a structured workflow to keep the codebase consistent, automated, and 
 
 - Keep branches small and focused on a single change.
 - Write clear commit messages following our [Conventional Commits](#commit-message-conventions) standard.
-- Ensure your code is linted and tested before opening a pull request:
-  ```bash
-  make lint
-  make test
-  ```
+- Ensure your code is linted and tested before opening a pull request: `make lint test`
 - Update or add relevant documentation (e.g., README, usage instructions).
 
 ## Pull Requests
@@ -64,10 +60,7 @@ docs: update contributing guidelines
 ## Testing
 
 - Write tests for all new features and bug fixes.
-- Ensure tests pass locally before submitting:
-  ```bash
-  make test
-  ```
+- Ensure tests pass locally before submitting: `make test`
 
 ## Releasing
 

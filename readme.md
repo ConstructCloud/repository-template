@@ -1,12 +1,3 @@
-# {{ organisation }} {{ repository }}
-
-## Table of Contents
-
-- [About](#about)
-- [Requirements](#requirements)
-- [Getting Started](#getting-started)
-- [Documentation](#documentation)
-
 ## About
 
 > TODO.
@@ -22,7 +13,7 @@ Make sure you have the following installed:
 
 ## Getting Started
 
-Follow the [setup instructions](https://{{ organisation }}.github.io/{{ repository }}/setup) for installation and environment configuration. For detailed instructions, see [usage documentation](https://{{ organisation }}.github.io/{{ repository }}/usage).
+Follow the [setup instructions](https://{{ organisation }}.github.io/{{ repository }}/setup) for installation and environment configuration.
 
 Quick start:
 
