@@ -1,14 +1,44 @@
 {
   "branches": [
     {
+      "name": "main"
+    },
+    {
       "name": "develop",
-      "prerelease": false
+      "prerelease": "alpha"
     }
   ],
   "tagFormat": "v${version}",
   "plugins": [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/github",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          {
+            "type": "docs",
+            "scope": "README",
+            "release": "patch"
+          },
+          {
+            "type": "refactor",
+            "release": "patch"
+          },
+          {
+            "type": "style",
+            "release": "patch"
+          },
+          {
+            "type": "chore",
+            "release": false
+          },
+          {
+            "type": "ci",
+            "release": false
+          }
+        ]
+      }
+    ],
     [
       "@semantic-release/release-notes-generator",
       {
@@ -21,9 +51,22 @@
       "@semantic-release/git",
       {
         "assets": [
-          "CHANGELOG.md"
+          "changelog.md"
         ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false,
+        "failComment": false,
+        "labels": [
+          "release"
+        ],
+        "releasedLabels": [
+          "released"
+        ]
       }
     ]
   ]

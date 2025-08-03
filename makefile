@@ -20,7 +20,7 @@ RESET  := $(shell tput sgr0)
 # ==========================================================
 # PHONY Targets
 # ==========================================================
-.PHONY: help setup run lint format test build clean up check-env
+.PHONY: help setup run lint format test build package clean up check-env
 .DEFAULT_GOAL := help
 
 # ==========================================================
@@ -37,6 +37,7 @@ help: ## Show available commands
 
 setup: ## Install project dependencies
 	@echo "$(YELLOW)No setup command defined for this project.$(RESET)"
+	@echo "Add language-specific dependency installation here (e.g., npm install, pip install, go mod tidy)."
 
 run: check-env ## Run the project locally
 	@echo "$(YELLOW)No run command defined for this project.$(RESET)"
@@ -50,8 +51,13 @@ format: ## Auto-format code
 test: ## Run tests
 	@echo "$(YELLOW)No test command defined for this project.$(RESET)"
 
-build: ## Build the project
+build: ## Build the project (compile, transpile, or prepare runtime assets)
 	@echo "$(YELLOW)No build command defined for this project.$(RESET)"
+	@echo "Implement your build commands here (e.g., go build, npm run build, python setup.py build)."
+
+package: build ## Package the project for distribution (tarballs, docker images, etc.)
+	@echo "$(YELLOW)No package command defined for this project.$(RESET)"
+	@echo "Use this target to prepare release artifacts (e.g., zip files, docker build & tag, npm pack)."
 
 clean: ## Remove caches, temporary files, Docker containers, images, and volumes
 	@echo "$(RED)WARNING: This will remove all build artifacts, caches, containers, images, and volumes!$(RESET)"

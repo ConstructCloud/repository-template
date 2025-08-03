@@ -6,3 +6,4 @@ This is the official documentation for the {{ organisation }} **{{ repository }}
 
 - [Setup](setup.md)
 - [Usage](usage.md)
+- [Contributing](contributing.md)
