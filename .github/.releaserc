@@ -17,8 +17,11 @@
         "preset": "conventionalcommits",
         "releaseRules": [
           {
+            "type": "merge",
+            "release": false
+          },
+          {
             "type": "docs",
-            "scope": "README",
             "release": "patch"
           },
           {
@@ -37,7 +40,14 @@
             "type": "ci",
             "release": false
           }
-        ]
+        ],
+        "parserOpts": {
+          "mergePattern": "^Merge pull request #([0-9]+) from .+$",
+          "mergeCorrespondence": [
+            "id",
+            "source"
+          ]
+        }
       }
     ],
     [
