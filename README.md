@@ -18,7 +18,7 @@ Follow the [setup instructions](https://{{ organisation }}.github.io/{{ reposito
 Quick start:
 
 ```bash
-make up
+make help
 ```
 
 ## Documentation
