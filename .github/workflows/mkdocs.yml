@@ -38,7 +38,7 @@ jobs:
         run: mkdocs build -f .github/mkdocs.yml --strict
 
       - name: Configure Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
         with:
           token: ${{ secrets.PAGES_TOKEN }}
           enablement: true
