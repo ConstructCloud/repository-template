@@ -37,7 +37,6 @@ docs_dir: ../docs
 
 nav:
   - ...
-  - Contributing: contributing.md
 ```
 
 ## Adding New Pages
@@ -64,17 +63,4 @@ nav:
 
 ### Build and preview
 
-The documentation is automatically built and deployed via GitHub Actions when changes are pushed to the main branch.
-
-## Local Development
-
-To preview documentation changes locally:
-
-```bash
-pip install mkdocs mkdocs-material
-mkdocs serve -f .github/mkdocs.yml
-```
-
-## Publishing
-
-Documentation is automatically published to GitHub Pages at `https://{{ organisation }}.github.io/{{ repository }}` when changes are merged to the main branch.
+The documentation is automatically built and deployed via GitHub Actions when changes are pushed to the `develop branch`.
