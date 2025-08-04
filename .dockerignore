@@ -6,6 +6,8 @@
 .github/
 Makefile
 docker/
+!docker/Dockerfile
+!docker/entrypoint.sh
 docs/
 
 ############################
