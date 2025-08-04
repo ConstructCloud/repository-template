@@ -36,15 +36,19 @@ jobs:
         run: mkdocs build -f .github/mkdocs.yml --strict # outputs to .github/site
 
       # ----------------------------------------------------------------
-      # Configure GitHub Pages & obtain a deployment token
+      # Configure (and, if necessary, create) the Pages site.
+      # `enablement: true` lets the action create the site the first time,
+      # which eliminates any race with the Terraform job.
       # ----------------------------------------------------------------
       - name: Configure Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true # create or verify Pages, build_type=workflow
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .github/site # matches the build output
+          path: .github/site # matches build output
 
   deploy:
     needs: build
