@@ -1,4 +1,4 @@
-name: build
+name: release
 
 on:
   push:
@@ -7,10 +7,12 @@ on:
 permissions:
   contents: write
   packages: write
+  pull-requests: write
+  issues: write
 
 jobs:
   build:
-    name: validate
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,19 +30,6 @@ jobs:
 
       - name: Build
         run: make build
-
-  release:
-    name: release
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
