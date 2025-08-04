@@ -175,7 +175,6 @@ images/gallery/*
 ############################
 # Data / Game Files
 ############################
-otclient/
 otclient.map
 otclient.layout
 
@@ -189,7 +188,4 @@ tags
 ############################
 # Misc
 ############################
-*.xml
-*.pic
-.htaccess
-system/pages/downloads.php
+.local/
