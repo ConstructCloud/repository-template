@@ -6,10 +6,9 @@
 
 Make sure you have the following installed:
 
-- [Git](https://git-scm.com/) – Version control system
-- [Make](https://www.gnu.org/software/make/) – Build automation tool
-- [Docker](https://www.docker.com/) – Containerization platform
-- [Docker Compose](https://docs.docker.com/compose/) – Multi-container orchestration
+- [Git](https://git-scm.com/downloads) – Version control system
+- [Make](https://www.gnu.org/software/make/#download) – Build automation tool
+- [Docker](https://docs.docker.com/desktop/) – Containerization platform
 
 ## Getting Started
 
