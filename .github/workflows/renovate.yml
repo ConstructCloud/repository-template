@@ -39,7 +39,7 @@ env:
 
 jobs:
   renovate:
-    name: Renovate
+    name: scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository

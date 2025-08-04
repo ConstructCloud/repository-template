@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    name: Validate Build
+    name: validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
         run: make build
 
   release:
-    name: Semantic Release
+    name: release
     needs: build
     runs-on: ubuntu-latest
     permissions:
