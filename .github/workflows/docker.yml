@@ -1,7 +1,3 @@
-# Publishes container images for:
-#   • every merge to `develop`  →  ghcr.io/<org>/<repo>:develop
-#   • every semver tag          →  ghcr.io/<org>/<repo>:<tag>  (+ :latest)
-#
 name: publish
 
 on:
@@ -17,7 +13,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  docker:
+  push:
     runs-on: ubuntu-latest
 
     steps:
