@@ -2,9 +2,17 @@
 
 ## Make Targets
 
+### Help
+
+List all available `make` targets:
+
+```bash
+make help
+```
+
 ### Setup
 
-Install dependencies and prepare the project:
+Install project dependencies and prepare the development environment:
 
 ```bash
 make setup
@@ -12,16 +20,40 @@ make setup
 
 ### Run
 
-Start the service locally:
+Start the service locally for development:
 
 ```bash
 make run
 ```
 
-### Help
+### Lint
 
-List all available `make` targets:
+Run code quality checks and linting tools:
 
 ```bash
-make help
+make lint
+```
+
+### Format
+
+Automatically format code according to project style guidelines:
+
+```bash
+make format
+```
+
+### Test
+
+Execute the project's test suite:
+
+```bash
+make test
+```
+
+### Clean
+
+Remove all build artifacts, caches, and Docker resources (if applicable):
+
+```bash
+make clean
 ```

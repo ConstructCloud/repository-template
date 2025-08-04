@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-## Installation
+## Workflow Principles
 
 We follow a structured workflow to keep the codebase consistent, automated, and release-ready.
 
