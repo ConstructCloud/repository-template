@@ -28,17 +28,17 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Install MkDocs + theme
+      - name: Install MkDocs
         run: |
           pip install mkdocs mkdocs-material
 
-      - name: Build site
+      - name: Build Site
         run: mkdocs build -f .github/mkdocs.yml --strict
 
-      - name: Upload Pages artefact
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: .github/site
 
   deploy:
     needs: build
