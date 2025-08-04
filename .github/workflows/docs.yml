@@ -9,12 +9,12 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read # checkout
-  pages: write # upload + deploy
-  id-token: write # OIDC token for deployment
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -29,26 +29,21 @@ jobs:
           python-version: "3.x"
 
       - name: Install MkDocs
-        run: |
-          pip install mkdocs mkdocs-material
+        run: pip install mkdocs mkdocs-material
 
       - name: Build site
-        run: mkdocs build -f .github/mkdocs.yml --strict # outputs to .github/site
+        run: mkdocs build -f .github/mkdocs.yml --strict
 
-      # ----------------------------------------------------------------
-      # Configure (and, if necessary, create) the Pages site.
-      # `enablement: true` lets the action create the site the first time,
-      # which eliminates any race with the Terraform job.
-      # ----------------------------------------------------------------
       - name: Configure Pages
         uses: actions/configure-pages@v4
         with:
-          enablement: true # create or verify Pages, build_type=workflow
+          token: ${{ secrets.PAGES_TOKEN }}
+          enablement: true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .github/site # matches build output
+          path: .github/site
 
   deploy:
     needs: build
