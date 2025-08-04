@@ -9,9 +9,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read # checkout
+  pages: write # upload + deploy
+  id-token: write # OIDC token for deployment
 
 concurrency:
   group: "pages"
@@ -32,13 +32,19 @@ jobs:
         run: |
           pip install mkdocs mkdocs-material
 
-      - name: Build Site
-        run: mkdocs build -f .github/mkdocs.yml --strict
+      - name: Build site
+        run: mkdocs build -f .github/mkdocs.yml --strict # outputs to .github/site
 
-      - name: Upload Pages Artifact
+      # ----------------------------------------------------------------
+      # Configure GitHub Pages & obtain a deployment token
+      # ----------------------------------------------------------------
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .github/site
+          path: .github/site # matches the build output
 
   deploy:
     needs: build
