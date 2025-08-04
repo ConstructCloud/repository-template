@@ -2,7 +2,7 @@
 
 ## Workflow Principles
 
-We follow a structured workflow to keep the codebase consistent, automated, and release-ready.
+This repository follows a structured and policy driven workflow to keep the codebase consistent, and release-ready.
 
 ## Development Workflow
 
@@ -23,7 +23,7 @@ We follow a structured workflow to keep the codebase consistent, automated, and 
 
 ## Commit Message Conventions
 
-We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)  
+This repository uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)  
 to enable automated versioning and changelog generation via **semantic-release**.
 
 ### Format:
