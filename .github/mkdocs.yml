@@ -12,5 +12,6 @@ nav:
   - Home: index.md
   - Setup: setup.md
   - Usage: usage.md
+  - Workflows: workflows.md
   - Contributing: contributing.md
   - Documentation: documentation.md
