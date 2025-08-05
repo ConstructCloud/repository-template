@@ -24,7 +24,7 @@ else
     MK_OS := macos
   endif
 endif
--include make/$(MK_OS).mk
+-include .make/$(MK_OS).mk
 
 # =========================
 # Dispatch targets
