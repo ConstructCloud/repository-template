@@ -1,14 +1,8 @@
-# =========================
-# Project configuration
-# =========================
 DOCKER_COMPOSE      ?= docker compose
 DOCKER_COMPOSE_FILE ?= docker/docker-compose.yml
 PROJECT_NAME        ?= $(notdir $(CURDIR))
 ENV_FILE            ?= .env
 
-# =========================
-# OS detection (override with: make FORCE_OS=debian|macos|windows)
-# =========================
 MK_OS := debian
 ifdef FORCE_OS
   MK_OS := $(FORCE_OS)
@@ -26,9 +20,6 @@ else
 endif
 -include .make/$(MK_OS).mk
 
-# =========================
-# Dispatch targets
-# =========================
 .PHONY: help check-env setup run lint format test build package clean up
 .DEFAULT_GOAL := help
 
