@@ -65,13 +65,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # delete all prerelease GitHub releases (uses gh --jq, no jq package needed)
+          # delete all prerelease GitHub releases
           gh api repos/${{ github.repository }}/releases --paginate --jq '.[] | select(.prerelease==true) | .id' \
             | xargs -r -n1 -I{} gh api repos/${{ github.repository }}/releases/{} -X DELETE
-          # delete any prior tags that look like vX.Y.Z-rc
+          # delete any prior versioned -rc tags (if you ever used them)
           git for-each-ref --format='%(refname:short)' refs/tags \
             | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+-rc$' \
             | xargs -r -I{} gh api -X DELETE repos/${{ github.repository }}/git/refs/tags/{}
+          # also delete the constant 'rc' tag (current pattern)
+          gh api -X DELETE repos/${{ github.repository }}/git/refs/tags/rc || true
 
       - name: Generate prerelease notes (develop)
         if: github.ref == 'refs/heads/develop'
