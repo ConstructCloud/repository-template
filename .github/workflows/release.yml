@@ -62,18 +62,21 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
         shell: bash
         run: |
           set -euo pipefail
-          # delete all prerelease GitHub releases
-          gh api repos/${{ github.repository }}/releases --paginate --jq '.[] | select(.prerelease==true) | .id' \
-            | xargs -r -n1 -I{} gh api repos/${{ github.repository }}/releases/{} -X DELETE
-          # delete any prior versioned -rc tags (if you ever used them)
-          git for-each-ref --format='%(refname:short)' refs/tags \
-            | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+-rc$' \
-            | xargs -r -I{} gh api -X DELETE repos/${{ github.repository }}/git/refs/tags/{}
-          # also delete the constant 'rc' tag (current pattern)
-          gh api -X DELETE repos/${{ github.repository }}/git/refs/tags/rc || true
+
+          mapfile -t REL_IDS < <(gh api repos/$REPO/releases --paginate --jq '.[] | select(.prerelease==true) | .id')
+          for id in "${REL_IDS[@]:-}"; do
+            gh api repos/$REPO/releases/$id -X DELETE || true
+          done
+
+          mapfile -t TAGS < <(gh api repos/$REPO/git/refs/tags --paginate \
+            --jq '.[] | .ref | sub("^refs/tags/";"") | select(test("^(rc|v[0-9]+\\.[0-9]+\\.[0-9]+-rc)$"))')
+          for tag in "${TAGS[@]:-}"; do
+            gh api -X DELETE repos/$REPO/git/refs/tags/$tag || true
+          done
 
       - name: Generate prerelease notes (develop)
         if: github.ref == 'refs/heads/develop'
