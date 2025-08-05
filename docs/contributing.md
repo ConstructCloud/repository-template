@@ -14,8 +14,7 @@ This repository follows a structured and policy driven workflow to keep the code
 ## Pull Requests
 
 - Target the appropriate branch:
-  - **`develop`** for ongoing work and pre-releases (alpha versions).
-  - **`main`** for stable, production-ready code.
+  - **`master`** for ongoing work and pre-releases (alpha versions)
 - Keep PRs small and focused.
 - Include a clear description of your changes.
 - Reference related issues (e.g., `Closes #42`).
@@ -66,8 +65,8 @@ docs: update contributing guidelines
 
 Releases are automated via [semantic-release](https://github.com/semantic-release/semantic-release):
 
-- Merging PRs into **`develop`** triggers a pre-release (`alpha`).
-- Merging PRs into **`main`** triggers a stable release (`vX.Y.Z`) with:
+- Merging PRs into **`master`** triggers a pre-release (`alpha`).
+- Creating tags from **`master`** triggers a stable release (`vX.Y.Z`) with:
   - Changelog updates
   - GitHub Release creation
   - Docker image publishing

@@ -12,7 +12,7 @@ Pull requests are automatically validated through our CI pipeline, which runs li
 
 ### Automated Releases
 
-Releases are handled automatically using semantic versioning based on [Conventional Commits](https://www.conventionalcommits.org/). When code is merged to `main`, the system:
+Releases are handled automatically using semantic versioning based on [Conventional Commits](https://www.conventionalcommits.org/). When code is merged to `master`, the system:
 
 - Analyzes commit messages to determine the next version
 - Creates GitHub releases with generated changelogs
@@ -21,7 +21,7 @@ Releases are handled automatically using semantic versioning based on [Conventio
 
 ### Documentation Deployment
 
-Documentation changes pushed to `develop` automatically deploy to GitHub Pages using MkDocs.
+Documentation changes pushed to `master` automatically deploy to GitHub Pages using MkDocs.
 
 ### Dependency Management
 
@@ -31,8 +31,7 @@ Documentation changes pushed to `develop` automatically deploy to GitHub Pages u
 
 Repository branches are protected with automated rules:
 
-- **`main`**: Requires pull request reviews and passing CI checks (merge commits)
-- **`develop`**: Requires linear history and passing CI checks (squash commits)
+- **`master`**: Requires linear history and passing CI checks (squash commits)
 - **`gh-pages`**: Allows automated documentation deployments
 
 ## Next Steps

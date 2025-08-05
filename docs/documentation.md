@@ -28,7 +28,7 @@ The MkDocs configuration is located at `.github/mkdocs.yml`:
 site_name: {{ organisation }} {{ repository }}
 site_url: https://{{ organisation }}.github.io/{{ repository }}
 repo_url: https://github.com/{{ organisation }}/{{ repository }}
-edit_uri: edit/develop/docs/
+edit_uri: edit/master/docs/
 
 theme:
   name: material
@@ -63,4 +63,4 @@ nav:
 
 ### Build and preview
 
-The documentation is automatically built and deployed via GitHub Actions when changes are pushed to the `develop branch`.
+The documentation is automatically built and deployed via GitHub Actions when changes are pushed to the `master branch`.

@@ -1,9 +1,9 @@
 name: release
 
 on:
-  push:
-    branches: [main, develop]
   workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * 1" # every Monday 09:00 AWST
 
 permissions:
   contents: write
@@ -12,29 +12,17 @@ permissions:
   issues: write
 
 concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: true
+  group: stable-release
+  cancel-in-progress: false
 
 jobs:
-  build:
-    name: build & release
+  stable:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: master
           fetch-depth: 0
-
-      - name: Setup environment
-        run: make setup
-
-      - name: Lint
-        run: make lint
-
-      - name: Test
-        run: make test
-
-      - name: Build
-        run: make build
 
       - uses: actions/setup-node@v4
         with:
@@ -43,68 +31,10 @@ jobs:
       - name: Install Semantic Release
         run: npm install --no-save semantic-release @semantic-release/github @semantic-release/git @semantic-release/release-notes-generator @semantic-release/commit-analyzer conventional-changelog-conventionalcommits conventional-changelog-cli conventional-recommended-bump semver
 
-      # ========= develop: single rolling prerelease =========
-      - name: Compute next version (develop)
-        if: github.ref == 'refs/heads/develop'
-        id: ver
-        shell: bash
-        run: |
-          set -euo pipefail
-          LAST_STABLE=$(git describe --tags --abbrev=0 --match "v[0-9]*.[0-9]*.[0-9]*" 2>/dev/null || echo "v0.0.0")
-          TYPE=$(npx conventional-recommended-bump -p conventionalcommits 2>/dev/null || echo patch)
-          TYPE=$(echo "$TYPE" | grep -Eo 'major|minor|patch' | head -1 || echo patch)
-          NEXT=$(node -e 'const semver=require("semver"); const base=process.argv[1].replace(/^v/,""); const t=process.argv[2]||"patch"; console.log("v"+semver.inc(base,t));' "$LAST_STABLE" "$TYPE")
-          echo "last=$LAST_STABLE" >> $GITHUB_OUTPUT
-          echo "type=$TYPE"        >> $GITHUB_OUTPUT
-          echo "next=$NEXT"        >> $GITHUB_OUTPUT
-
-      - name: Remove previous prereleases/tags (develop)
-        if: github.ref == 'refs/heads/develop'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          mapfile -t REL_IDS < <(gh api repos/$REPO/releases --paginate --jq '.[] | select(.prerelease==true) | .id')
-          for id in "${REL_IDS[@]:-}"; do
-            gh api repos/$REPO/releases/$id -X DELETE || true
-          done
-
-          mapfile -t TAGS < <(gh api repos/$REPO/git/refs/tags --paginate \
-            --jq '.[] | .ref | sub("^refs/tags/";"") | select(test("^(rc|v[0-9]+\\.[0-9]+\\.[0-9]+-rc)$"))')
-          for tag in "${TAGS[@]:-}"; do
-            gh api -X DELETE repos/$REPO/git/refs/tags/$tag || true
-          done
-
-          git tag -l 'v*-rc' | xargs -r -n1 git tag -d || true
-          git tag -d rc || true
-
-      - name: Generate prerelease notes (develop)
-        if: github.ref == 'refs/heads/develop'
-        shell: bash
-        run: |
-          npx conventional-changelog -p conventionalcommits -r 0 > FULL_NOTES.md
-          awk 'NR==1,/^## \[?v?[0-9]+\.[0-9]+\.[0-9]+/' FULL_NOTES.md > RELEASE_NOTES.md
-
-      - name: Create single prerelease (develop)
-        if: github.ref == 'refs/heads/develop'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          TAG="rc"
-          TITLE="${{ steps.ver.outputs.next }}-rc"
-          gh release create "$TAG" --prerelease --title "$TITLE" -F RELEASE_NOTES.md --target "$GITHUB_SHA"
-
-      # ========= main: stable release via semantic-release =========
-      - name: Select semantic-release config (main)
-        if: github.ref == 'refs/heads/main'
+      - name: Use release config
         run: cp .github/.releaserc ./.releaserc
 
-      - name: Run semantic-release (main)
-        if: github.ref == 'refs/heads/main'
+      - name: Run semantic-release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release --no-ci

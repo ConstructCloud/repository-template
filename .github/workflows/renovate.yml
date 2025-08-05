@@ -18,7 +18,7 @@ on:
   schedule:
     - cron: "0 2 * * *"
   push:
-    branches: [develop]
+    branches: [master]
     paths:
       - .github/renovate.json
       - .github/renovate/**.json
