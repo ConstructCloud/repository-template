@@ -78,6 +78,9 @@ jobs:
             gh api -X DELETE repos/$REPO/git/refs/tags/$tag || true
           done
 
+          git tag -l 'v*-rc' | xargs -r -n1 git tag -d || true
+          git tag -d rc || true
+
       - name: Generate prerelease notes (develop)
         if: github.ref == 'refs/heads/develop'
         shell: bash
@@ -93,7 +96,7 @@ jobs:
         run: |
           TAG="rc"
           TITLE="${{ steps.ver.outputs.next }}-rc"
-          gh release create "$TAG" --prerelease --title "$TITLE" -F RELEASE_NOTES.md
+          gh release create "$TAG" --prerelease --title "$TITLE" -F RELEASE_NOTES.md --target "$GITHUB_SHA"
 
       # ========= main: stable release via semantic-release =========
       - name: Select semantic-release config (main)
