@@ -2,8 +2,6 @@ name: release
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 1 * * 1" # every Monday 09:00 AWST
 
 permissions:
   contents: write
@@ -12,17 +10,22 @@ permissions:
   issues: write
 
 concurrency:
-  group: stable-release
+  group: release-tags
   cancel-in-progress: false
 
 jobs:
-  stable:
+  latest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: master
           fetch-depth: 0
+
+      - name: Remove mutable prerelease tag locally
+        run: |
+          git tag -d rc || true
+          git update-ref -d refs/tags/rc || true
 
       - uses: actions/setup-node@v4
         with:
