@@ -32,7 +32,7 @@ jobs:
           node-version: 22
 
       - name: Install Semantic Release
-        run: npm install --no-save semantic-release @semantic-release/github @semantic-release/git @semantic-release/release-notes-generator @semantic-release/commit-analyzer conventional-changelog-conventionalcommits conventional-changelog-cli conventional-recommended-bump semver
+        run: npm install --no-save semantic-release @semantic-release/github @semantic-release/git @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release/exec
 
       - name: Use release config
         run: cp .github/.releaserc ./.releaserc

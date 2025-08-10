@@ -52,12 +52,9 @@
       }
     ],
     [
-      "@semantic-release/git",
+      "@semantic-release/exec",
       {
-        "assets": [
-          "CHANGELOG.md"
-        ],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        "prepareCmd": "make setup && make build VERSION=${nextRelease.version}"
       }
     ],
     [
@@ -70,7 +67,30 @@
         ],
         "releasedLabels": [
           "released"
+        ],
+        "assets": [
+          {
+            "path": "dist/**/*.zip"
+          },
+          {
+            "path": "dist/**/*.tar.gz"
+          },
+          {
+            "path": "dist/**/*.tgz"
+          },
+          {
+            "path": "dist/**/*.deb"
+          }
         ]
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ]
   ]
