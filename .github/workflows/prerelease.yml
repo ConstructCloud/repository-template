@@ -20,7 +20,7 @@ jobs:
         with: { fetch-depth: 0 }
 
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+        with: { node-version: 22 }
 
       - name: Install Semantic Release
         run: npm install --no-save semantic-release @semantic-release/github @semantic-release/git @semantic-release/release-notes-generator @semantic-release/commit-analyzer conventional-changelog-conventionalcommits conventional-changelog-cli conventional-recommended-bump semver
