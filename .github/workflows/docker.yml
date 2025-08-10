@@ -1,12 +1,10 @@
 name: docker
 
 on:
+  repository_dispatch:
+    types: [prerelease, release]
   push:
     tags: ["v*.*.*"]
-  release:
-    types: [published]
-  repository_dispatch:
-    types: [prerelease]
 
 permissions:
   contents: read
@@ -25,13 +23,8 @@ jobs:
         run: |
           set -euo pipefail
           case "${GITHUB_EVENT_NAME}" in
-            release)
-              TAG="${{ github.event.release.tag_name }}"
-              REF="$TAG"
-              ;;
             repository_dispatch)
               TAG="${{ github.event.client_payload.tag }}"
-              # Prefer exact commit if provided; fall back to tag name
               REF="${{ github.event.client_payload.sha || github.event.client_payload.tag }}"
               ;;
             push)
