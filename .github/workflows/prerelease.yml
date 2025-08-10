@@ -25,6 +25,20 @@ jobs:
       - name: Install Semantic Release
         run: npm install --no-save semantic-release @semantic-release/github @semantic-release/git @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release/exec
 
+      - name: Install changelog deps
+        run: npm install --no-save conventional-changelog-cli conventional-changelog-conventionalcommits
+
+      - name: Generate RELEASE_NOTES.md
+        shell: bash
+        run: |
+          npx conventional-changelog-cli \
+            -p conventionalcommits \
+            -n .github/changelog.config.cjs \
+            -r 1 \
+            -o RELEASE_NOTES.md
+
+          test -s RELEASE_NOTES.md || echo "No user-facing changes since last release." > RELEASE_NOTES.md
+
       - name: Compute next version
         id: ver
         shell: bash

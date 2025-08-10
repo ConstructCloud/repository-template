@@ -34,6 +34,9 @@ jobs:
       - name: Install Semantic Release
         run: npm install --no-save semantic-release @semantic-release/github @semantic-release/git @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release/exec
 
+      - name: Install changelog deps
+        run: npm install --no-save conventional-changelog-cli conventional-changelog-conventionalcommits
+
       - name: Use release config
         run: cp .github/.releaserc ./.releaserc
 
