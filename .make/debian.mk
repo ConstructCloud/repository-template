@@ -21,10 +21,7 @@ BLUE   := $(shell tput setaf 4 2>/dev/null || echo "")
 RESET  := $(shell tput sgr0 2>/dev/null || echo "")
 
 setup-debian:
-	@echo "$(GREEN)Setting up build environment...$(RESET)"
-	@mkdir -p $(DIST)
-	@printf "version=%s\nbuilt_at=%s\n" "$(VERSION)" "$$(date -u +%Y-%m-%dT%H:%M:%SZ)" > $(DIST)/.setup
-	@echo "$(GREEN)Wrote $(DIST)/.setup$(RESET)"
+	@echo "$(YELLOW)No setup command defined for this project.$(RESET)"
 
 run-debian:
 	@echo "$(YELLOW)No run command defined for this project.$(RESET)"
@@ -39,10 +36,7 @@ test-debian:
 	@echo "$(YELLOW)No test command defined for this project.$(RESET)"
 
 build-debian: | setup-debian
-	@echo "$(GREEN)Building placeholder artifact...$(RESET)"
-	@echo "Hello from $(PROJECT_NAME) v$(VERSION)" > $(DIST)/hello-$(VERSION).txt
-	@tar -czf $(DIST)/$(PROJECT_NAME)-$(VERSION)-linux-amd64.tar.gz -C $(DIST) hello-$(VERSION).txt
-	@echo "$(GREEN)Artifact created: $(DIST)/$(PROJECT_NAME)-$(VERSION)-linux-amd64.tar.gz$(RESET)"
+	@echo "$(YELLOW)No build command defined for this project.$(RESET)"
 
 package-debian:
 	@echo "$(YELLOW)No package command defined for this project.$(RESET)"
